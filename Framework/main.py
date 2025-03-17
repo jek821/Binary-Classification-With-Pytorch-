@@ -30,8 +30,8 @@ def run_experiment(num_runs=1):
         PerceptronModel(learning_rate=0.01, max_iterations=1000),
         LinearProgrammingModel(),
         CrossEntropyModel(learning_rate=0.01, epochs=1000),
-        LeastSquaresModel(learning_rate=0.01, epochs=1000)
-        #SoftmaxModel(learning_rate=0.01, epochs=1000)
+        LeastSquaresModel(learning_rate=0.01, epochs=1000),
+        SoftmaxModel(learning_rate=0.01, epochs=1000)
     ]
     
     # Result storage

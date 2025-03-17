@@ -3,15 +3,10 @@ import numpy as np
 class SoftmaxLoss:
     @staticmethod
     def compute(y_true, y_pred):
-        """
-        Compute cross-entropy loss for softmax outputs.
-        """
+        # For y_true in {-1, 1} and y_pred as raw scores before activation
         eps = 1e-12
-        y_pred = np.clip(y_pred, eps, 1 - eps)  # Avoid log(0) issues
         
-        # Ensure `y_true` is one-hot encoded
-        num_classes = y_pred.shape[1]
-        y_true_one_hot = np.eye(num_classes)[y_true.astype(int)]
-
-        # Compute categorical cross-entropy loss
-        return -np.mean(np.sum(y_true_one_hot * np.log(y_pred), axis=1))
+        # Implementing L_S(w) = (1/P) * sum(log(1 + exp(-y_i * w^T x_i)))
+        # Where y_pred represents w^T x_i
+        loss = np.log(1 + np.exp(-y_true * y_pred))
+        return np.mean(loss)
