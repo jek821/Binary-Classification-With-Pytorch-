@@ -10,6 +10,7 @@ from models_abstracted.perceptron_wrapper import PerceptronModel
 from models_abstracted.linear_program_wrapper import LinearProgrammingModel
 from models_abstracted.cross_entropy_wrapper import CrossEntropyModel
 from models_abstracted.least_squares_wrapper import LeastSquaresModel
+from models_abstracted.softmax_wrapper import SoftmaxModel
 
 # Configuration
 NUM_RUNS = 1000  # Default number of runs for experiment mode
@@ -30,6 +31,7 @@ def run_experiment(num_runs=1):
         LinearProgrammingModel(),
         CrossEntropyModel(learning_rate=0.01, epochs=1000),
         LeastSquaresModel(learning_rate=0.01, epochs=1000)
+        #SoftmaxModel(learning_rate=0.01, epochs=1000)
     ]
     
     # Result storage
@@ -46,11 +48,19 @@ def run_experiment(num_runs=1):
         X, y = data_util.generate_linearly_separable(n_samples=SAMPLE_SIZE, dim=2)
         X_train, X_test, y_train, y_test = data_util.partition_data(train_ratio=0.8)
         
+        # Create a copy of the data with converted labels for models that need -1/1 labels
+        y_train_neg = 2 * y_train - 1  # Convert to -1,1
+        y_test_neg = 2 * y_test - 1    # Convert to -1,1
+        
         # Run each algorithm and collect results
         run_results = []
         for model in models:
-            # Evaluate model and get metrics
-            result = model.evaluate(X_train, y_train, X_test, y_test)
+            # Select the appropriate labels based on model requirements
+            if hasattr(model, 'requires_negative_labels') and model.requires_negative_labels:
+                result = model.evaluate(X_train, y_train_neg, X_test, y_test_neg)
+            else:
+                result = model.evaluate(X_train, y_train, X_test, y_test)
+                
             run_results.append(result)
             
             # Store for aggregation
