@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import utils.data as data
+import utils.graph as graph 
 
 # Import model classes
 from models_abstracted.perceptron_wrapper import PerceptronModel
@@ -14,7 +15,7 @@ from models_abstracted.softmax_wrapper import SoftmaxModel
 
 # Configuration
 NUM_RUNS = 1000  # Default number of runs for experiment mode
-SAMPLE_SIZE = 10000  # Data points per run
+SAMPLE_SIZE = 10  # Data points per run
 
 # Create directories
 graphs_dir = os.path.join(os.path.dirname(__file__), "graphs")
@@ -140,6 +141,7 @@ def create_bar_charts(results, title_suffix="", filename_prefix=""):
     perf_path = os.path.join(graphs_dir, f"{filename_prefix}performance_comparison.png")
     plt.savefig(perf_path)
     print(f"Performance chart saved to {perf_path}")
+
 
 def format_results_for_display(results):
     display_results = []

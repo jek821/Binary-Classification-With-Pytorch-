@@ -5,10 +5,9 @@ import os
 class Graph:
 
     def plot_and_save(self, data, hyperplane, save_path):
-        """
-        Plots the entire dataset and the decision boundary of the hyperplane.
-        Ensures that the data remains consistent by using the stored dataset.
-        """
+        # Plots the entire dataset and the decision boundary of the hyperplane.
+        # Ensures that the data remains consistent by using the stored dataset.
+
         # Get the full dataset (not just training data)
         X, y = data.X, data.y  
 

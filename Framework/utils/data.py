@@ -21,14 +21,13 @@ class Data:
         X = np.vstack((X_class_0, X_class_1))
         y = np.hstack((np.zeros(n_half), np.ones(n_half)))
 
-        # Shuffle to avoid ordering bias
+        # Shuffle to avoid bias
         indices = np.random.permutation(n_samples)
         self.X, self.y = X[indices], y[indices]
 
         return self.X, self.y
 
     def generate_non_linearly_separable(self, n_samples=100, dim=2):
-        # Generates non-linearly separable data (e.g., XOR pattern)
         self.X = np.random.randn(n_samples, dim)
         self.y = np.sign(np.sin(5 * self.X[:, 0]) + np.cos(5 * self.X[:, 1]))
         return self.X, self.y

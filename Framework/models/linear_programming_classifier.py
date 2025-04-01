@@ -24,7 +24,7 @@ class LinearProgramClassifier:
         result = linprog(
             c=objective_coeffs,  # Minimize 0
             A_ub=constraint_matrix,
-            b_ub=-constraint_bounds,  # Convert >= to <= by negating
+            b_ub=-constraint_bounds,  
             method='highs'
         )
 
