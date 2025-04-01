@@ -1,18 +1,8 @@
 import numpy as np
 
 class Perceptron:
-    """
-    Simple Perceptron algorithm that works with provided hyperplane and data objects.
-    """
     
     def __init__(self, learning_rate=0.01, max_iterations=1000):
-        """
-        Initialize the perceptron.
-        
-        Parameters:
-            learning_rate (float): Step size for weight updates
-            max_iterations (int): Maximum number of training iterations
-        """
         self.learning_rate = learning_rate
         self.max_iterations = max_iterations
         self.hyperplane = None

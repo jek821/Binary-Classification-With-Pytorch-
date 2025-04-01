@@ -13,13 +13,12 @@ class GradientDescent:
         y_pred = np.clip(y_pred, 1e-12, 1 - 1e-12)
         
         if activation == "sigmoid":
-            # For sigmoid, this is the correct derivative
             gradient_activation = y_pred * (1 - y_pred)
             error = y_pred - y_true
         elif activation == "softmax":
             # For softmax with cross-entropy, the gradient simplifies to this
             error = y_pred - y_true
-            gradient_activation = 1  # This will effectively be ignored when multiplied
+            gradient_activation = 1 
         else:
             raise ValueError("Unsupported activation function")
             

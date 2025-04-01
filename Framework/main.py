@@ -24,7 +24,7 @@ os.makedirs(graphs_dir, exist_ok=True)
 data_util = data.Data()
 
 def run_experiment(num_runs=1):
-    """Run experiments for all models"""
+    # Run experiments for all models
     # Define models to use
     models = [
         PerceptronModel(learning_rate=0.01, max_iterations=1000),
@@ -89,7 +89,7 @@ def run_experiment(num_runs=1):
     return all_results, summary_results
 
 def create_bar_charts(results, title_suffix="", filename_prefix=""):
-    """Create bar charts comparing algorithms"""
+    # Create bar charts comparing algorithms
     model_names = [result['Model'] for result in results]
     
     # Create accuracy comparison chart

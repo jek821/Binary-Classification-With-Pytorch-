@@ -16,10 +16,6 @@ class Hyperplane:
         if self.activation_function == "sigmoid":
             return Sigmoid.activate(linear_output)
         elif self.activation_function == "softmax":
-            # For binary classification with softmax, we can represent it as
-            # probabilities for two complementary events (class 0 and class 1)
-            # Convert to shape expected by softmax and then extract probability for class 1
-            logits = np.column_stack([-linear_output, linear_output])
-            return Softmax.activate(logits)[:, 1]  # Return P(class=1)
+            return Softmax.activate(linear_output)
         else:
             raise ValueError(f"Unsupported activation function: {self.activation_function}")
